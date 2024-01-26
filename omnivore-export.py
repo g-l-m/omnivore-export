@@ -5,7 +5,7 @@
 more info at https://github.com/Cito/omnivore-export
 """
 
-from datetime import date
+from datetime import datetime
 from json import dump
 from os import environ
 
@@ -115,7 +115,7 @@ def main():
     path = environ.get('OMNIVORE_BACKUP_PATH', backup_path)
     if add_date_to_path:
         parts = list(path.partition('.'))
-        parts.insert(-2, "-" + date.today().isoformat())
+        parts.insert(-2, "-" + datetime.today().strftime("%Y-%m-%d_%H%M%S"))
         path = ''.join(parts)
     save_backup(nodes, path)
 
